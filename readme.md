@@ -26,4 +26,10 @@ Este listener tiene como propósito parsear los datos para que sean guardados co
 ```js
 database = new Data (...rawData);
 ```
-Esto crea una nueva instancia de la clase `Data`, que contiene todos los campos necesarios (nombre, apellido, dni, etc.)
+Esto crea una nueva instancia de la clase `Data`, que contiene todos los campos necesarios (nombre, apellido, dni, etc.).
+A su vez, llama a la funcion `painter`, que se encarga de imprimir en pantalla los resultados del escaneo:
+```js
+Object.entries(object).forEach(value, => {
+    input.innerHTML += `<li>${value[0]}: ${value[1]}</li>`
+});
+```
