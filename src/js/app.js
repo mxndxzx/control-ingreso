@@ -15,7 +15,6 @@ const painter = (object) => {
 // === Event listeners
 // Pistol scanner listener (keydown and 'enter' events)
 document.addEventListener('keydown', (e) => {
-    console.log(e);
     if(!window.hasOwnProperty('scan')) {
         window.scan = [];
     };
