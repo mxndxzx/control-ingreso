@@ -1,14 +1,92 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
     <title>Control de Ingreso</title>
 </head>
 <body>
-    <ul class="input"></ul>
-    <p class="lower"></p>
-    <script src="src/js/app.js" type="module"></script> <!-- Entry point -->
+    <h1 class="title">Control de Ingreso</h1>
+    <div class="container-sm mx-auto main__form">
+        <form class="row g-3 p-4 was-validated" id="main__submit">
+            <div class="col-6">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control main__form--name" id="name" readonly>
+            </div>
+            <div class="col-6">
+                <label for="surname" class="form-label">Apellido</label>
+                <input type="text" class="form-control main__form--surname" id="surname" readonly>
+            </div>
+            <div class="col-4">
+                <label for="userId" class="form-label">DNI</label>
+                <input type="text" class="form-control main__form--userId" id="userId" readonly>
+            </div>
+            <div class="col-4">
+                <label for="type" class="form-label">Tipo de registro</label>
+                <select id="type" class="form-select main__form--regType" required>
+                    <option selected disabled value="">Elegir...</option>
+                    <option>Ingreso</option>
+                    <option>Egreso</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="area" class="form-label">Area de destino</label>
+                    <select id="type" class="form-select main__form--area" required>
+                        <option selected disabled value="">Elegir...</option>
+                        <option>Dirección</option>
+                        <option>Sistemas</option>
+                        <option>Inhibiciones</option>
+                        <option>Archivo Técnico</option>
+                        <option>Bien de Familia</option>
+                        <option>Area 1</option>
+                        <option>Area 2</option>
+                        <option>Area 3</option>
+                        <option>Area 4</option>
+                        <option>Area 5</option>
+                        <option>Area 6</option>
+                        <option>Area 7</option>
+                        <option>Area 8</option>
+                        <option>Area 9</option>
+                        <option>Area 10</option>
+                        <option>Area 11</option>
+                        <option>Area 12</option>
+                        <option>Area 13</option>
+                        <option>Area 14</option>
+                        <option>Area 15</option>
+                    </select>
+                <div id="areaHelp" class="form-text">Si se trata de un egreso, elegir el área o sector desde el cual sale el usuario</div>
+            </div>
+            <div class="col-12">
+                <label for="description" class="form-label main__form--desc">Observaciones</label>
+                <input type="text" class="form-control" id="description">
+            </div>
+            <div class="row mt-4 main__form--btns">
+                <div class="col">
+                    <button type="button" class="btn btn-primary main__form--modal">Ingresar</button>
+                    <button type="button" class="btn btn-secondary main__form--clear">Limpiar campos</button>
+                </div>
+            </div>
+            <div class="row mt-4 form__msg">Complete los campos</div>
+        </form>
+        <div class="modal fade" id="submitModal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="submitModalLabel"></h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">¿Desea registrar a este usuario?</div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="finalSubmit">Ingresar</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+
+    <script src="src/js/index.js" type="module"></script>
 </body>
 </html>

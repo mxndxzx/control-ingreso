@@ -3,3 +3,6 @@ node_modules/
 
 # Package json
 *.json
+
+# Sass
+*.scss

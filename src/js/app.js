@@ -1,9 +1,3 @@
-import Data from './db.js';
-
-// === Variables
-let rawData, database;
-
-// Functions
 const painter = (object) => {
     let input = document.querySelector('.input');
     Object.entries(object).forEach(value => {
@@ -12,35 +6,53 @@ const painter = (object) => {
     input.innerHTML += `<p>-------------------------</p>`
 };
 
-// === Event listeners
-// Pistol scanner listener (keydown and 'enter' events)
-document.addEventListener('keydown', (e) => {
-    if(!window.hasOwnProperty('scan')) {
-        window.scan = [];
-    };
+// class Calls {
+//     async getUser(userId) {
+//         await fetch(`http://localhost:3001/api/v1/users/${userId}`, {
+//             method: "GET",
+//             headers: { "Content-Type": "application/json", "Accept": "application/json" },
+//             mode: "cors",
+//         })
+        
+//         .then(data => {
+//             console.log(data)
+//         })
 
-    if(window.scan.length > 0 && (e.timeStamp - window.scan.slice(-1)[0].timeStamp) > 100) {
-        window.scan = []
-    };
+//         .catch(
+//             console.log(err)
+//         );
+//     };
+// };
 
-    if(e.key === 'Enter' && window.scan.length > 0) {
-        let data = window.scan.reduce( (scan, entry) => {
-            return scan + entry.key;
-        }, '');
-        window.scan = [];
-        return document.dispatchEvent(new CustomEvent('scanComplete', {detail: data}));
-    };
+async function getUser(userId) {
+    await fetch(`http://localhost:3001/api/v1/users/${userId}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        mode: "cors",
+    })
+    
+    .then(data => {
+        data.json().then(json => {
+            console.log(json)
+        });
+    })
 
-    if(e.location == 0 && e.key !== 'CapsLock') {
-        let data = JSON.parse(JSON.stringify(e, ['key', 'timeStamp']));
-        data.timeStampDiff = window.scan.length > 0 ? data.timestamp - window.scan.slice(-1)[0].timestamp : 0;
-        window.scan.push(data);
-    };
-});
+    .catch(err => {console.log('Error::' + err)})
+};
 
-// Listener for custom scanner event
-document.addEventListener('scanComplete', (e) => {
-    rawData = e.detail.replace(/&/g, '/').split('²');
-    database = new Data (...rawData);
-    painter(database);
-});
+// getUser(43600475);
+
+// async function data() {
+//     await fetch('http://localhost:3001/api/v1/users/43600475', init)
+//     .then(data => {
+//         if (data.ok) {
+//             data.json().then(json => {
+//                 console.log(json);
+//             });
+//         };
+//     })
+    
+//     .catch(err => console.log('ERROR::'+ err))
+// }
+
+// data();
